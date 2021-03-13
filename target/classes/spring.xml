@@ -30,7 +30,10 @@
 
     <!-- <property name="computer" ref="computer"></property> -->
   </bean>
-  <bean id="computer" class="com.anas.Laptop" >
+  <!-- en specifiant l'attribut primary si un conflit est rencontrer dans
+  le choix des bean a injecté par spring (dans notre cas par un autowire byType) 
+  le bean choisi sera celui qui possedera l'attribut primarry-->
+  <bean id="computer" class="com.anas.Laptop" primary="true">
   </bean>
   <bean id="desktop" class="com.anas.Desktop" >
   </bean>
