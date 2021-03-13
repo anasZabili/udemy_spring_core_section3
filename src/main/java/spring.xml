@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <!-- par default le scope d'un objet est singleton ce qui veut dire que l'objet suit le design 
+  pattern singleton donc une instance sera crée au maxiumun, le design pattern singleton utilisé
+  par spring instancie l'objet au début de l'execution peut importe si l'objet est demandé ou non
+  la ou le prototype lui n'instancie pas les objet au debut -->
+
+  <!-- le scope prototype signifie que spring ne va plus suivre le design pattern singleton et que dé qu'un
+  objet sera demandé par le client un nouvel objet sera instancié -->
+  <!-- <bean id="alien" class="com.anas.Alien" scope="prototype"></bean> -->
+
+  <!-- property indique les property a set a ma suite 
+  de la creation de l'objet -->
+  <!-- Pour passé un objet non primitif a une class on utilise
+  le mot clef ref pour faire un passage par reference -->
+  <!-- autowire de spring va injecter le bean de type Computer
+  dans notre constructor en fonction du nom de notre attribut
+  computer si notre attribut est computer un inecjtera in laptop
+  si notrre attribut est desktop on injectera un desktop -->
+  <!-- byType a un fonctionnement similaire par type -->
+  <bean id="alien" class="com.anas.Alien" autowire="byType" >
+    <property name="age" value="10"></property>
+    <!-- constructor arg oblige la construction a passer par
+    le constructeur parametré avec les argument passé en parametre-->
+    <!-- <constructor-arg value="12"></constructor-arg> -->
+
+    <!-- <property name="computer" ref="computer"></property> -->
+  </bean>
+  <bean id="computer" class="com.anas.Laptop" >
+  </bean>
+  <bean id="desktop" class="com.anas.Desktop" >
+  </bean>
+</beans>
+
+<!-- on a deux type d'injection la premiere est le setter injection 
+qui inject dans les setter de la class et
+le suivant est le constructeur injection qui inject
+dans le constructeur de la class propertu = setterinecjtion
+constructor-arg = constructor injection
+pour choisir enter setter ou constructeur injection : si la prop
+est requise on utilise constructeur si elle est optionnel on utilise
+setter
+-->
